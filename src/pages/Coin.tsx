@@ -4,9 +4,54 @@ import { useParams } from 'react-router-dom';
 import '../styles/Coin.scss';
 import DOMPurify from 'dompurify';
 
+interface ICoin {
+  name: string;
+  description: {
+    en: string;
+  };
+  market_cap_rank: number;
+  image: {
+    small: string;
+  };
+  symbol: string;
+  market_data: {
+    circulating_supply: string;
+    market_cap: {
+      usd: number;
+    };
+    high_24h: {
+      usd: number;
+    };
+    low_24h: {
+      usd: number;
+    };
+    price_change_percentage_1y_in_currency: {
+      usd: number;
+    };
+    price_change_percentage_30d_in_currency: {
+      usd: number;
+    };
+    price_change_percentage_14d_in_currency: {
+      usd: number;
+    };
+    price_change_percentage_7d_in_currency: {
+      usd: number;
+    };
+    price_change_percentage_24h_in_currency: {
+      usd: number;
+    };
+    price_change_percentage_1h_in_currency: {
+      usd: number;
+    };
+    current_price: {
+      usd: number;
+    };
+  };
+}
+
 const Coin = () => {
   const params = useParams();
-  const [coin, setCoin] = useState<any>({});
+  const [coin, setCoin] = useState({} as ICoin);
 
   useEffect(() => {
     axios
@@ -17,7 +62,7 @@ const Coin = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [params.coinId]);
 
   return (
     <div>

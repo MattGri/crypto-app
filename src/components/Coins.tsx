@@ -4,7 +4,16 @@ import '../styles/Coins.scss';
 import { Link } from 'react-router-dom';
 
 interface Props {
-  coins: any[];
+  coins: {
+    image: string;
+    symbol: string;
+    market_cap_rank: number;
+    current_price: number;
+    price_change_percentage_24h: number;
+    total_volume: number;
+    market_cap: number;
+    id: string;
+  }[];
 }
 
 const Coins = ({ coins }: Props) => {
